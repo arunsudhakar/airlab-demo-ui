@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
         
       - uses: mr-smithers-excellent/docker-build-push@v5
-        name: Dockerize Airlab UI
+        name: Build Airlab UI Docker
         with:
           image: arunsudhakar/airlab-demo
           tags: airlab-ui
