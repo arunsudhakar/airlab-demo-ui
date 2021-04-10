@@ -5,7 +5,7 @@ name: Deploy Airlab UI
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 
 jobs:
   build:
