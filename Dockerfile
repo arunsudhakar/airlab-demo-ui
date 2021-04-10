@@ -1,4 +1,7 @@
 FROM node:current-alpine3.13 AS build
+
+EXPOSE 8090
+
 WORKDIR /src/app
 COPY package.json ./
 RUN npm install
