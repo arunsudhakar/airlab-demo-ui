@@ -1,0 +1,21 @@
+<br>
+Select Airport :
+<select name="airports" class="rounded-inputs20 select-select col-md-3" (change)="onSelect($event)">
+  <option *ngFor="let airport of airports">{{airport.icao}}</option>
+</select> 
+
+
+<div *ngIf="selectedAirport">
+
+  <h2>Details</h2>
+  <div><h1>ICAO:{{selectedAirport}}</h1></div>
+  <div>
+    <label for="airport-name">Top 2 STARS Waypoints: </label>
+    <pre><code>{{ starsWaypointResult | json }} </code></pre>
+  </div>
+  <div>
+    <label for="airport-name">Top 2 SIDS Waypoints: </label>
+    <pre><code>{{ sidsWaypointResult | json }} </code></pre>
+  </div>
+
+</div>
