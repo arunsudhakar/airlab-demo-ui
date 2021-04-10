@@ -10,8 +10,7 @@
     "e2e": "ng e2e",
     "build:ci": "ng build --prod --sourceMap=false --base-href /airlab-demo-ui/",
     "build:docs": "compodoc -d ./public -p ./tsconfig.json --theme Laravel  --includes .",
-    "test:ci": "ng test --watch=false --code-coverage --source-map true",
-
+    "test:ci": "ng test --watch=false --code-coverage --source-map true"
   },
   "private": true,
   "dependencies": {
