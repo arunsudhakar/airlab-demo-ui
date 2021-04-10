@@ -1,0 +1,48 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy Airlab UI
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build:ci
+      - name: Test
+        run: npm run test:ci
+      - name: Archive build
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: deploy_dist
+          path: dist
+      - name: Archive code coverage result
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: deploy_coverage
+          path: coverage
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download build
+        uses: actions/download-artifact@v2
+        with:
+          name: deploy_dist
