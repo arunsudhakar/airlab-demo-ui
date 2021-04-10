@@ -46,3 +46,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: deploy_dist
+      
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        name: Angular App
+        with:
+          image: arunsudhakar/airlab-demo
+          tags: airlab-ui
+          dockerfile: Dockerfile
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
