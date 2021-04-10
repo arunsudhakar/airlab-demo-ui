@@ -48,7 +48,7 @@ jobs:
           name: deploy_dist
       
       - uses: mr-smithers-excellent/docker-build-push@v5
-        name: Angular App
+        name: Dockerize Airlab UI
         with:
           image: arunsudhakar/airlab-demo
           tags: airlab-ui
