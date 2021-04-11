@@ -13,15 +13,15 @@ export class AirlabService {
   constructor(private http: HttpClient){}
 
   public getAirports(): Observable<Airport[]> {
-    return this.http.get<Airport[]>(`${this.airport_service}/airports`).pipe(catchError(this.handleError));
+    return this.http.get<Airport[]>(`${this.base_uri}/airports`).pipe(catchError(this.handleError));
   }
 
   public getSIDWaypoints(icao: string): Observable<WaypointResult[]> {
-    return this.http.get<WaypointResult[]>(`${this.sid_service}/sids/${icao}/waypoint/2`).pipe(catchError(this.handleError));
+    return this.http.get<WaypointResult[]>(`${this.base_uri}/sids/${icao}/waypoint/2`).pipe(catchError(this.handleError));
   }
 
   public getSTARWaypoints(icao: string): Observable<WaypointResult[]> {
-    return this.http.get<WaypointResult[]>(`${this.star_service}/stars/${icao}/waypoint/2`).pipe(catchError(this.handleError));
+    return this.http.get<WaypointResult[]>(`${this.base_uri}/stars/${icao}/waypoint/2`).pipe(catchError(this.handleError));
   }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
