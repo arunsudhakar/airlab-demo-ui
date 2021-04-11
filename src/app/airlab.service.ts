@@ -8,7 +8,8 @@ import {catchError, } from 'rxjs/operators';''
 export class AirlabService {
 
   constructor(private http: HttpClient){}
-
+  private base_uri = environment.base_uri;
+  
   public getAirports(): Observable<Airport[]> {
     return this.http.get<Airport[]>(`${this.base_uri}/airports`).pipe(catchError(this.handleError));
   }
