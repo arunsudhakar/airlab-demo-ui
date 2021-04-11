@@ -1,13 +1,14 @@
-FROM node:current-alpine3.13 AS build
-
-WORKDIR /src/app
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
+FROM trion/ng-cli as builder
+WORKDIR /app
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+RUN npm ci  --debug 
 COPY . .
-RUN npm run build
+RUN ng build --prod
 
-### STAGE 2: Run ###
-FROM node:current-alpine3.13
+
+FROM nginx:1.17.5
+COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /src/app/dist/airlab-ui /usr/share/nginx/html/
+COPY --from=builder  /app/dist/airlab-ui /usr/share/nginx/html 
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
