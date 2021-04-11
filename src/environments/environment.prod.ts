@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  airport_service:'http://localhost:8081',
-  star_service:'http://localhost:8082',
-  sid_service:'http://localhost:8083'
+  airport_service:'http://airport-service:8081',
+  star_service:'http://star-service:8082',
+  sid_service:'http://sid-service:8083'
 };
