@@ -6,9 +6,6 @@ import { environment } from 'src/environments/environment';
 import {catchError, } from 'rxjs/operators';''
 @Injectable({providedIn: 'root'})
 export class AirlabService {
-  private airport_service = environment.airport_service;
-  private sid_service = environment.sid_service;
-  private star_service = environment.star_service;
 
   constructor(private http: HttpClient){}
 
