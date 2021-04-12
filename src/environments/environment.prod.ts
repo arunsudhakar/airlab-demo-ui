@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  base_uri:'http://54.224.21.95:8090',
+  base_uri:'http://ec2-54-82-53-242.compute-1.amazonaws.com:8090',
 };
